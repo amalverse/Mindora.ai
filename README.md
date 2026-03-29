@@ -260,7 +260,7 @@ Mindora.ai/
 ├── 📄 API-DOCUMENTATION.md              # Detailed API reference
 ├── 📄 .gitignore
 │
-├── 📁 frontend/                         # React Vite Frontend Application
+├── 📁 client/                           # React Vite Frontend Application
 │   ├── 📄 package.json                  # Dependencies & scripts
 │   ├── 📄 vite.config.js                # Vite configuration
 │   ├── 📄 tailwind.config.js            # Tailwind CSS config
@@ -329,7 +329,7 @@ Mindora.ai/
 │       └── 📁 assets/                   # Static assets
 │           └── images/                  # Images & icons
 │
-├── 📁 backend/                          # Express.js Backend Application
+├── 📁 server/                           # Express.js Backend Application
 │   ├── 📄 package.json                  # Dependencies & scripts
 │   ├── 📄 index.js                      # Server entry point
 │   ├── 📄 render.yaml                   # Render deployment config
@@ -640,14 +640,14 @@ Each controller handles business logic for its domain:
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/Mindora.ai.git
+git clone https://github.com/amalverse/Mindora.ai.git
 cd Mindora.ai
 ```
 
 ### Step 2: Setup Backend
 
 ```bash
-cd backend
+cd server
 npm install
 
 # Create .env file
@@ -662,7 +662,7 @@ Backend will run on `http://localhost:5000`
 ### Step 3: Setup Frontend
 
 ```bash
-cd ../frontend
+cd ../client
 npm install
 
 # Create .env file
@@ -678,7 +678,7 @@ Frontend will run on `http://localhost:5173`
 
 ## 📝 **Environment Variables**
 
-### Backend (.env)
+### Server (.env)
 
 ```env
 # Server Configuration
@@ -708,7 +708,7 @@ EMAIL_PASSWORD=your-app-specific-password
 SESSION_SECRET=your-session-secret-key
 ```
 
-### Frontend (.env)
+### Client (.env)
 
 ```env
 VITE_API_URL=http://localhost:5000/api
@@ -722,35 +722,35 @@ VITE_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 
 ### Development Mode
 
-**Terminal 1 - Backend:**
+**Terminal 1 - Server:**
 ```bash
-cd backend
+cd server
 npm run dev
 ```
 
-**Terminal 2 - Frontend:**
+**Terminal 2 - Client:**
 ```bash
-cd frontend
+cd client
 npm run dev
 ```
 
 Visit:
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5000/api
+- Client: http://localhost:5173
+- Server API: http://localhost:5000/api
 - API Docs: http://localhost:5000/api-docs
 
 ### Production Build
 
-**Frontend:**
+**Client:**
 ```bash
-cd frontend
+cd client
 npm run build
 npm run preview
 ```
 
-**Backend:**
+**Server:**
 ```bash
-cd backend
+cd server
 npm start
 ```
 
@@ -869,25 +869,25 @@ npm start
 
 ## 🌐 **Deployment**
 
-### Frontend Deployment (Vercel)
+### Client Deployment (Vercel)
 
 ```bash
 # Login to Vercel
 vercel login
 
 # Deploy
-cd frontend
+cd client
 vercel
 
 # Set environment variables in Vercel dashboard
 # VITE_API_URL=https://your-api.com/api
 ```
 
-### Backend Deployment
+### Server Deployment
 
 #### Option 1: Vercel (Serverless)
 ```bash
-cd backend
+cd server
 vercel
 
 # Configure environment variables in Vercel dashboard
@@ -972,259 +972,9 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 **Last Updated**: March 29, 2026  
 **Version**: 1.0.0
-│   └── package.json
-│
-└── README.md                   # This file
-```
 
 ---
 
-## 🚀 **Installation & Setup**
-
-### Prerequisites
-- Node.js (v16+)
-- npm or yarn
-- MongoDB Atlas account
-- Google Gemini API key
-
-### Step 1: Clone Repository
-```bash
-git clone https://github.com/yourusername/Mindora.ai.git
-cd Mindora.ai
-```
-
-### Step 2: Backend Setup
-```bash
-cd backend
-
-# Install dependencies
-npm install
-
-# Create .env file from example
-cp .env.example .env
-
-# Update .env with your credentials
-# - MONGODB_URI
-# - JWT_SECRET
-# - GEMINI_API_KEY
-# - CLIENT_URL
-
-# Start development server
-npm run dev
-# Server runs on http://localhost:5000
-```
-
-### Step 3: Frontend Setup
-```bash
-cd ../frontend
-
-# Install dependencies
-npm install
-
-# Create .env.local from example
-cp .env.example .env.local
-
-# Update .env.local
-# - VITE_API_BASE_URL=http://localhost:5000/api
-
-# Start development server
-npm run dev
-# App runs on http://localhost:5173
-```
-
----
-
-## 🔐 **Environment Variables**
-
-### Backend (.env)
-```env
-# Server
-PORT=5000
-NODE_ENV=development
-
-# Database
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/mindora-ai
-
-# Authentication
-JWT_SECRET=your_secret_key_change_in_production
-
-# AI API
-GEMINI_API_KEY=your_gemini_api_key
-
-# Frontend
-CLIENT_URL=http://localhost:5173
-```
-
-### Frontend (.env.local)
-```env
-VITE_API_BASE_URL=http://localhost:5000/api
-```
-
----
-
-## 📚 **API Documentation**
-
-### 🎯 Interactive Swagger UI
-The API is fully documented with **Swagger/OpenAPI 3.0**, providing an interactive interface for exploring and testing endpoints.
-
-**Access Swagger Documentation:**
-- **Development:** `http://localhost:5000/api-docs`
-- **Production:** `https://api.mindora.ai/api-docs`
-
-**Features:**
-- ✨ Interactive endpoint explorer
-- 🧪 Built-in API testing tools
-- 🔐 JWT authentication support
-- 📋 Complete request/response examples
-- 🔄 Real-time API schema
-
-### Base URL
-**Development:** `http://localhost:5000/api`
-
-### Authentication Routes
-
-#### Register User
-```http
-POST /auth/register
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "securePassword123"
-}
-
-Response (201):
-{
-  "_id": "userId",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "token": "jwt_token"
-}
-```
-
-#### Login User
-```http
-POST /auth/login
-Content-Type: application/json
-
-{
-  "email": "john@example.com",
-  "password": "securePassword123"
-}
-
-Response (200):
-{
-  "_id": "userId",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "token": "jwt_token"
-}
-```
-
-#### Get User Profile (Protected)
-```http
-GET /auth/user
-Authorization: Bearer <token>
-
-Response (200):
-{
-  "_id": "userId",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "createdAt": "2024-03-29T10:00:00Z"
-}
-```
-
-### Mood Tracking Routes
-
-#### Create Mood Entry
-```http
-POST /moods
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "moodType": "Happy",
-  "note": "Had a great day at work!",
-  "intensity": 8,
-  "factors": ["Work", "Social"]
-}
-
-Response (201):
-{
-  "_id": "moodId",
-  "userId": "userId",
-  "moodType": "Happy",
-  "note": "Had a great day at work!",
-  "intensity": 8,
-  "factors": ["Work", "Social"],
-  "date": "2024-03-29T10:00:00Z"
-}
-```
-
-#### Get All Moods
-```http
-GET /moods
-Authorization: Bearer <token>
-
-Response (200):
-[{
-  "_id": "moodId",
-  "moodType": "Happy",
-  "note": "Had a great day",
-  "intensity": 8,
-  "date": "2024-03-29T10:00:00Z"
-}]
-```
-
-#### Delete Mood Entry
-```http
-DELETE /moods/:id
-Authorization: Bearer <token>
-
-Response (200):
-{ "message": "Mood deleted successfully" }
-```
-
-### Journal Routes
-
-#### Create Journal Entry
-```http
-POST /journals
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "title": "Today's Reflection",
-  "content": "Today was a good day...",
-  "moodContext": "Happy"
-}
-
-Response (201):
-{
-  "_id": "journalId",
-  "userId": "userId",
-  "title": "Today's Reflection",
-  "content": "Today was a good day...",
-  "moodContext": "Happy",
-  "createdAt": "2024-03-29T10:00:00Z"
-}
-```
-
-#### Get All Journals
-```http
-GET /journals
-Authorization: Bearer <token>
-
-Response (200):
-[{ ... }]
-```
-
-#### Update Journal Entry
-```http
-PUT /journals/:id
-Authorization: Bearer <token>
 Content-Type: application/json
 
 {
@@ -1270,7 +1020,7 @@ Response (200):
 
 ## 🌐 **Deployment**
 
-### Frontend Deployment (Vercel)
+### Client Deployment (Vercel)
 
 1. **Connect GitHub Repository**
    - Go to [vercel.com](https://vercel.com)
@@ -1358,13 +1108,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **Issues:** GitHub Issues
 - **Email:** support@mindora.ai
-- **Documentation:** [Wiki](https://github.com/yourusername/Mindora.ai/wiki)
-
----
-
-## 🙏 **Acknowledgments**
-
-- Built with modern React and Node.js best practices
 - Powered by Google Gemini AI
 - Designed for mental wellness and mindfulness
 - Inspired by apps like Calm and Headspace
