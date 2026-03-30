@@ -290,7 +290,7 @@ const googleAuthCallback = async (req, res, next) => {
     const token = generateToken(user._id);
 
     // Redirect to frontend with token and encoded user data
-    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
+    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
   } catch (error) {
     next(error);
   }
@@ -311,7 +311,7 @@ const githubAuthCallback = async (req, res, next) => {
     const token = generateToken(user._id);
 
     // Redirect to frontend with token and encoded user data
-    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
+    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
   } catch (error) {
     next(error);
   }

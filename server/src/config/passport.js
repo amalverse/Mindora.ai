@@ -12,6 +12,7 @@ passport.use(
       clientID: process.env.OAUTH_CLIENT_ID,
       clientSecret: process.env.OAUTH_CLIENT_SECRET,
       callbackURL: process.env.OAUTH_CALLBACK_URL || '/auth/google/callback',
+      proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -48,6 +49,7 @@ passport.use(
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: process.env.GITHUB_CALLBACK_URL || '/auth/github/callback',
+      proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {

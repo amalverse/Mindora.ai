@@ -99,7 +99,13 @@ app.get('/auth/google/callback',
   }),
   (req, res) => {
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
-    const userStr = encodeURIComponent(JSON.stringify(req.user));
+    const safeUser = {
+      _id: req.user._id,
+      name: req.user.name,
+      email: req.user.email,
+      profileImage: req.user.profileImage
+    };
+    const userStr = encodeURIComponent(JSON.stringify(safeUser));
     res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${userStr}`);
   }
 );
@@ -113,7 +119,13 @@ app.get('/auth/github/callback',
   }),
   (req, res) => {
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
-    const userStr = encodeURIComponent(JSON.stringify(req.user));
+    const safeUser = {
+      _id: req.user._id,
+      name: req.user.name,
+      email: req.user.email,
+      profileImage: req.user.profileImage
+    };
+    const userStr = encodeURIComponent(JSON.stringify(safeUser));
     res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${userStr}`);
   }
 );
