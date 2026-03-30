@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import Spinner from "../components/Spinner";
@@ -6,7 +6,13 @@ import Spinner from "../components/Spinner";
 export default function Login() {
     const [form, setForm] = useState({ email: "", password: "" });
     const navigate = useNavigate();
-    const { login, isLoading, error, clearError } = useAuthStore();
+    const { login, isLoading, user, error, clearError } = useAuthStore();
+
+    useEffect(() => {
+        if (user) {
+            navigate("/dashboard");
+        }
+    }, [user, navigate]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

@@ -12,22 +12,33 @@ export default function AuthSuccess() {
         const userStr = searchParams.get('user');
 
         if (token) {
+            // Use setToken and setUser from authStore
             setToken(token);
+            
             if (userStr) {
                 try {
-                    const user = JSON.parse(decodeURIComponent(userStr));
+                    // searchParams.get already decodes the URI component once.
+                    // We parse directly, but handle edge cases.
+                    const user = JSON.parse(userStr);
                     setUser(user);
                 } catch (e) {
                     console.error('Error parsing user data:', e);
+                    // Fallback to decodeURIComponent just in case it was double encoded by some browsers
+                    try {
+                        const user = JSON.parse(decodeURIComponent(userStr));
+                        setUser(user);
+                    } catch (e2) {
+                        console.error('Second attempt parsing user data failed:', e2);
+                    }
                 }
             }
-            // Small delay to ensure state is updated before redirect
-            setTimeout(() => {
-                navigate('/dashboard');
-            }, 100);
+            
+            // Navigate to dashboard after state is set
+            // Zustand's persist is synchronous by default, but navigate after a tick to be safe
+            navigate('/dashboard', { replace: true });
         } else {
             // No token, redirect to login
-            navigate('/login');
+            navigate('/login', { replace: true });
         }
     }, [searchParams, navigate, setUser, setToken]);
 
