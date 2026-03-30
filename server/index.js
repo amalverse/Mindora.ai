@@ -106,7 +106,7 @@ app.get('/auth/google/callback',
       profileImage: req.user.profileImage
     };
     const userStr = encodeURIComponent(JSON.stringify(safeUser));
-    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${userStr}`);
+    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/#/auth-success?token=${token}&user=${userStr}`);
   }
 );
 
@@ -126,7 +126,7 @@ app.get('/auth/github/callback',
       profileImage: req.user.profileImage
     };
     const userStr = encodeURIComponent(JSON.stringify(safeUser));
-    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth-success?token=${token}&user=${userStr}`);
+    res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/#/auth-success?token=${token}&user=${userStr}`);
   }
 );
 
