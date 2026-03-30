@@ -24,6 +24,9 @@ connectDB();
 
 const app = express();
 
+// Trust proxy for secure cookies and OAuth redirects
+app.set('trust proxy', 1);
+
 // CORS Configuration
 const corsOptions = {
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
