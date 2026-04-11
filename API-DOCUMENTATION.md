@@ -658,7 +658,7 @@ curl -X POST http://localhost:5000/api/moods \
 ### v1.0.0 (March 2024)
 - Initial API release
 - All core endpoints implemented
-- Gemini AI integration
+- Groq Llama 3.3 AI integration
 - Rate limiting enabled
 
 ---

@@ -6,7 +6,7 @@
 ![Express](https://img.shields.io/badge/Backend-Express%205-green)
 ![MongoDB](https://img.shields.io/badge/Database-MongoDB%20Atlas-green)
 ![Tailwind](https://img.shields.io/badge/Styling-Tailwind%20CSS%204-blue)
-![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-orange)
+![Groq](https://img.shields.io/badge/AI-Groq%20Llama%203.3-orange)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
 ---
@@ -41,7 +41,7 @@
 - **Find motivation** through personalized affirmations
 - **Analyze patterns** using interactive analytics dashboards
 
-The platform combines a modern, responsive web interface with a robust backend API, leveraging Google's Gemini AI to provide personalized mental wellness support.
+The platform combines a modern, responsive web interface with a robust backend API, leveraging Groq's Llama 3.3 AI to provide personalized mental wellness support.
 
 ---
 
@@ -78,7 +78,7 @@ The platform combines a modern, responsive web interface with a robust backend A
    - Privacy controls for entry sharing
 
 4. **🤖 AI Chatbot (Mental Wellness Companion)**
-   - Real-time conversations with Google Gemini AI
+   - Real-time conversations with Groq Llama 3.3 AI
    - Context-aware responses based on user mood and journal entries
    - Conversation history with persistent storage
    - Typing indicators for better UX
@@ -134,7 +134,7 @@ The platform combines a modern, responsive web interface with a robust backend A
    - Frontend sends requests to REST API
    - Backend validates and authenticates
    - Data stored in MongoDB with user isolation
-   - AI processing via Google Gemini for chat/sentiment analysis
+   - AI processing via Groq Llama 3.3 for chat and wellness guidance
    - Analytics computed from historical data
 
 ---
@@ -175,7 +175,7 @@ The platform combines a modern, responsive web interface with a robust backend A
 ┌───────▼──────────┐  ┌────────▼────────┐  ┌────────▼─────────┐
 │  BUSINESS LOGIC  │  │  EXTERNAL APIS  │  │  DATA TIER       │
 ├──────────────────┤  ├─────────────────┤  ├──────────────────┤
-│ Controllers      │  │ Google Gemini   │  │ MongoDB Atlas    │
+│ Controllers      │  │ Groq Llama 3.3  │  │ MongoDB Atlas    │
 ├──────────────────┤  │ (AI responses)  │  ├──────────────────┤
 │ Routes           │  │                 │  │ Collections:     │
 │ ├─ auth.Routes   │  │ Nodemailer      │  │ ├─ users         │
@@ -230,7 +230,7 @@ Frontend Request → Validation → Authentication → Processing → Database/A
 | **Mongoose** | 9.3.3 | MongoDB ODM (Object Document Mapper) |
 | **JWT (jsonwebtoken)** | 9.0.3 | Secure token-based authentication |
 | **bcryptjs** | 3.0.3 | Password hashing and verification |
-| **Google Generative AI** | 0.24.1 | Gemini AI integration for chatbot |
+| **Groq SDK** | latest | Llama 3.3 AI integration for chatbot |
 | **Passport.js** | 0.7.0 | Authentication middleware (OAuth 2.0) |
 | **Helmet** | 8.1.0 | Secure HTTP headers |
 | **express-rate-limit** | 8.3.1 | Request rate limiting |
@@ -316,7 +316,7 @@ Mindora.ai/
 │       │
 │       ├── 📁 services/                 # API & External Services
 │       │   ├── apiClient.js             # Axios HTTP client
-│       │   └── aiClient.js              # AI/Gemini integration
+│       │   └── aiClient.js              # AI/Groq integration
 │       │
 │       ├── 📁 store/                    # State Management (Zustand)
 │       │   └── useAppStore.js           # Global app state
@@ -374,15 +374,16 @@ Mindora.ai/
 
 ### External APIs & Services Used
 
-#### 1. **Google Generative AI (Gemini)**
+#### 1. **Groq AI (Llama 3.3)**
 - **Purpose**: AI-powered chatbot responses
-- **Package**: `@google/generative-ai`
+- **Package**: `groq-sdk`
+- **Model**: `llama-3.3-70b-versatile`
 - **Integration Point**: Chat route in backend
 - **Features**:
-  - Context-aware responses
-  - Streaming responses for better UX
+  - Context-aware responses based on user's mood and journal history
+  - High-speed inference with Groq's LPU technology
   - Safety filters for harmful content
-  - Multi-turn conversation support
+  - General mental wellness guidance alongside personalized support
 
 #### 2. **Google OAuth 2.0**
 - **Purpose**: Social login authentication
@@ -697,8 +698,8 @@ JWT_EXPIRY=30d
 GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 
-# Google Generative AI (Gemini)
-GOOGLE_AI_API_KEY=your-gemini-api-key
+# Groq AI (Llama 3.3)
+GROQ_API_KEY=your-groq-api-key
 
 # Email Service (Gmail)
 EMAIL_ADDRESS=your-email@gmail.com
@@ -861,7 +862,7 @@ npm start
    - API key separation by environment
 
 6. **Content Safety**
-   - Google Gemini content filtering
+   - Groq Llama AI safety filters
    - Rate limiting on sensitive endpoints
    - Error messages don't expose system details
 
@@ -948,7 +949,8 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 ## 🎉 **Acknowledgments**
 
-- Google for Gemini AI & OAuth services
+- Google for OAuth services
+- Groq for Llama AI & conversational intelligence
 - MongoDB for database hosting
 - Vercel for deployment platform
 - React & Vite communities for amazing tooling
@@ -1044,7 +1046,7 @@ Response (200):
    ```
    MONGODB_URI = your_mongodb_atlas_uri
    JWT_SECRET = your_secret_key
-   GEMINI_API_KEY = your_gemini_api_key
+   GROQ_API_KEY = your_groq_api_key
    CLIENT_URL = https://your-frontend-url
    NODE_ENV = production
    ```
@@ -1108,7 +1110,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **Issues:** GitHub Issues
 - **Email:** support@mindora.ai
-- Powered by Google Gemini AI
+- Powered by Groq Llama 3.3 AI
 - Designed for mental wellness and mindfulness
 - Inspired by apps like Calm and Headspace
 
