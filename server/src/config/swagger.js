@@ -12,10 +12,41 @@ const options = {
         url: 'https://mindora.ai',
       },
     },
+    // Dynamic server configuration for different hosting platforms
+    // Automatically detects the correct API URL based on environment variables
     servers: [
       {
-        url: process.env.API_URL || 'http://localhost:5000/api',
-        description: process.env.NODE_ENV === 'production' ? 'Production Server' : 'Development Server',
+        url: (() => {
+          // For Render hosting
+          if (process.env.RENDER_EXTERNAL_URL) {
+            return `${process.env.RENDER_EXTERNAL_URL}/api`;
+          }
+          // For Railway hosting
+          if (process.env.RAILWAY_STATIC_URL) {
+            return `${process.env.RAILWAY_STATIC_URL}/api`;
+          }
+          // For Heroku hosting
+          if (process.env.HEROKU_APP_NAME) {
+            return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com/api`;
+          }
+          // For Vercel hosting (if used for API)
+          if (process.env.VERCEL_URL) {
+            return `https://${process.env.VERCEL_URL}/api`;
+          }
+          // For custom API_URL
+          if (process.env.API_URL) {
+            return process.env.API_URL;
+          }
+          // For local development
+          return 'http://localhost:5000/api';
+        })(),
+        description: (() => {
+          if (process.env.RENDER_EXTERNAL_URL) return 'Render Production Server';
+          if (process.env.RAILWAY_STATIC_URL) return 'Railway Production Server';
+          if (process.env.HEROKU_APP_NAME) return 'Heroku Production Server';
+          if (process.env.VERCEL_URL) return 'Vercel Production Server';
+          return process.env.NODE_ENV === 'production' ? 'Production Server' : 'Development Server';
+        })(),
       },
     ],
     components: {
@@ -141,7 +172,7 @@ const options = {
       },
     ],
   },
-  apis: ['./src/routes/*.js'],
+  apis: [],
 };
 
 const specs = swaggerJsdoc(options);
