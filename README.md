@@ -181,8 +181,8 @@ The platform combines a modern, responsive web interface with a robust backend A
 │ ├─ auth.Routes   │  │ Nodemailer      │  │ ├─ users         │
 │ ├─ mood.Routes   │  │ (Email service) │  │ ├─ moods         │
 │ ├─ journal.Routes│  │                 │  │ ├─ journals      │
-│ ├─ chat.Routes   │  │ Google OAuth    │  │ ├─ chats         │
-│ └─ affirmation.. │  │ (Authentication)│  │ └─ affirmations  │
+│ ├─ chat.Routes   │  │ Google OAuth    │  │                  │
+│ └─ affirmation.. │  │ (Authentication)│  │                  │
 ├──────────────────┤  └─────────────────┘  └──────────────────┘
 │ Middleware       │             │                   │
 ├──────────────────┤             │                   │
